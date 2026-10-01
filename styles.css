@@ -161,8 +161,10 @@ h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
 }
 
 /* Assign distinct colors to each skill card */
+/* Note: white on #FF006E (pink) has contrast 3.83:1 — fails WCAG AA for normal text.
+   Using black text on pink to achieve 5.47:1 instead. */
 .skill-item:nth-child(1) { background-color: var(--color-primary);   color: var(--color-black); }
-.skill-item:nth-child(2) { background-color: var(--color-secondary); color: var(--color-white); }
+.skill-item:nth-child(2) { background-color: var(--color-secondary); color: var(--color-black); }
 .skill-item:nth-child(3) { background-color: var(--color-accent);    color: var(--color-black); }
 .skill-item:nth-child(4) { background-color: var(--color-tertiary);  color: var(--color-white); }
 
@@ -288,11 +290,14 @@ h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
   outline: none;
   transition: box-shadow 0.15s ease, transform 0.15s ease;
   appearance: none;
-  -webkit-appearance: none;
+  -webkit-appearance: none; /* Safari / Chrome */
+  -moz-appearance: none;    /* Firefox */
 }
 
 .form-input:focus,
 .form-textarea:focus {
+  outline: 3px solid var(--color-black, #000000);
+  outline-offset: 2px;
   box-shadow: 6px 6px 0 var(--color-black, #000000);
   transform: translate(-1px, -1px);
 }
@@ -329,9 +334,19 @@ h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
   transform: translate(6px, 6px);
 }
 
+.submit-button:focus {
+  outline: 3px solid var(--color-secondary, #FF006E);
+  outline-offset: 3px;
+}
+
 .submit-button:focus-visible {
   outline: 3px solid var(--color-secondary, #FF006E);
   outline-offset: 3px;
+}
+
+/* Remove the outline on mouse click for browsers that support :focus-visible */
+.submit-button:focus:not(:focus-visible) {
+  outline: none;
 }
 
 /* ==========================================================================
@@ -392,10 +407,32 @@ h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
   border-color: var(--color-black, #000000);
 }
 
+/* Error feedback: black text on pink gives 5.47:1 contrast (WCAG AA pass).
+   White text on #FF006E is only 3.83:1 and fails AA for normal-size text. */
 .form-feedback.error {
   background-color: var(--color-secondary, #FF006E);
-  color: var(--color-white, #FFFFFF);
+  color: var(--color-black, #000000);
   border-color: var(--color-black, #000000);
+}
+
+/* ==========================================================================
+   Prevent horizontal overflow at all viewport widths
+   ========================================================================== */
+
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+/* Ensure no element breaks out of the viewport horizontally */
+img,
+video,
+iframe,
+embed,
+object {
+  max-width: 100%;
+  height: auto;
 }
 
 /* ==========================================================================
@@ -476,22 +513,98 @@ h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
 
 /* --- Tablet (768px+): 2-column skills grid, increased padding --- */
 @media (min-width: 768px) {
+  /* Skills: 2-column grid */
   .skills-list {
     grid-template-columns: repeat(2, 1fr);
   }
 
+  /* Restore full section padding (same as base — explicit for clarity) */
   .section {
     padding: var(--spacing-lg) 0;
   }
+
+  /* Wider container horizontal padding */
+  .container {
+    padding: 0 var(--spacing-md);
+  }
+
+  /* Contact form: comfortable reading width on tablet */
+  .contact-form {
+    max-width: 560px;
+  }
+
+  /* Experience cards: restore full padding */
+  .experience-item {
+    padding: var(--spacing-md);
+    box-shadow: var(--shadow-brutal);
+  }
+
+  /* Education item: inline-block again, auto width */
+  .education-item {
+    display: inline-block;
+    width: auto;
+    box-shadow: var(--shadow-brutal);
+  }
+
+  /* Submit button: auto width (not full-width) */
+  .submit-button {
+    display: inline-block;
+    width: auto;
+  }
+
+  /* Cards: restore full shadow and padding */
+  .card {
+    box-shadow: var(--shadow-brutal);
+    padding: var(--spacing-md);
+  }
 }
 
-/* --- Desktop (1024px+): 4-column skills grid --- */
+/* --- Desktop (1024px+): 4-column skills grid, larger typography, extra padding --- */
 @media (min-width: 1024px) {
+  /* Skills: 4-column grid */
   .skills-list {
     grid-template-columns: repeat(4, 1fr);
   }
 
+  /* Increase section vertical padding for desktop spaciousness */
   .section {
     padding: var(--spacing-xl) 0;
+  }
+
+  /* Slightly increase container horizontal padding on large screens */
+  .container {
+    padding: 0 var(--spacing-lg);
+  }
+
+  /* Larger body text on desktop */
+  body {
+    font-size: 1.125rem;
+  }
+
+  /* Bump up typographic hierarchy on large screens */
+  h1 { font-size: clamp(3rem, 5vw, 4.5rem); }
+  h2 { font-size: clamp(2.25rem, 4vw, 3.5rem); }
+  h3 { font-size: clamp(1.75rem, 3vw, 2.25rem); }
+
+  /* Contact form: fixed comfortable max-width on desktop */
+  .contact-form {
+    max-width: 640px;
+  }
+
+  /* Larger submit button on desktop */
+  .submit-button {
+    font-size: 1.25rem;
+    padding: var(--spacing-sm) var(--spacing-lg);
+  }
+
+  /* Skill cards: larger text on desktop */
+  .skill-item {
+    font-size: 1.25rem;
+    padding: var(--spacing-md);
+  }
+
+  /* Profile intro text: slightly wider on desktop */
+  .profile-intro {
+    max-width: 800px;
   }
 }

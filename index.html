@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daniel Oscar Kantong - Portfolio</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="portfolio">
+
+    <!-- Profile Section -->
+    <section id="profile" class="section profile-section">
+      <div class="container">
+        <h1 class="profile-name">Daniel Oscar Kantong</h1>
+        <p class="profile-title">Web Developer</p>
+        <p class="profile-intro">
+          Passionate web developer with expertise in building modern, responsive, and user-friendly websites.
+          Experienced in front-end development with a strong foundation in HTML, CSS, JavaScript, and React.
+          Committed to creating clean, efficient code and delivering exceptional digital experiences.
+        </p>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section skills-section">
+      <div class="container">
+        <h2 class="section-title">Skills</h2>
+        <ul class="skills-list">
+          <li class="skill-item">HTML</li>
+          <li class="skill-item">CSS</li>
+          <li class="skill-item">JavaScript</li>
+          <li class="skill-item">React</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section experience-section">
+      <div class="container">
+        <h2 class="section-title">Experience</h2>
+        <div class="experience-list">
+          <article class="experience-item">
+            <h3 class="company-name">PT Kode Evolusi Bangsa</h3>
+            <p class="job-title">Front-End Developer</p>
+            <p class="job-period">2022 – Present</p>
+            <p class="job-description">
+              Developed and maintained responsive web applications using HTML, CSS, JavaScript, and React.
+              Collaborated with cross-functional teams to deliver high-quality digital products on time.
+            </p>
+          </article>
+
+          <article class="experience-item">
+            <h3 class="company-name">ForeverVacation Bali</h3>
+            <p class="job-title">Web Developer</p>
+            <p class="job-period">2020 – 2022</p>
+            <p class="job-description">
+              Built and optimized the company website to improve user experience and search engine visibility.
+              Implemented responsive layouts and interactive features to support tourism booking flows.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="section education-section">
+      <div class="container">
+        <h2 class="section-title">Education</h2>
+        <div class="education-item">
+          <h3 class="degree-title">Sarjana Ilmu Komputer (S.Kom)</h3>
+          <p class="institution-name">Universitas Indonesia</p>
+          <p class="graduation-year">Graduated 2021</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact-section">
+      <div class="container">
+        <h2 class="section-title">Contact</h2>
+        <form id="contactForm" class="contact-form" novalidate>
+          <div class="form-group">
+            <label for="name" class="form-label">Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              class="form-input"
+              required
+              aria-required="true"
+              aria-describedby="nameError"
+            >
+            <span class="error-message" id="nameError" role="alert"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="email" class="form-label">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              class="form-input"
+              required
+              aria-required="true"
+              aria-describedby="emailError"
+            >
+            <span class="error-message" id="emailError" role="alert"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="message" class="form-label">Message</label>
+            <textarea
+              id="message"
+              name="message"
+              class="form-textarea"
+              rows="5"
+              required
+              aria-required="true"
+              aria-describedby="messageError"
+            ></textarea>
+            <span class="error-message" id="messageError" role="alert"></span>
+          </div>
+
+          <button type="submit" class="submit-button">Send Message</button>
+        </form>
+
+        <div id="formFeedback" class="form-feedback" role="alert" aria-live="polite"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
