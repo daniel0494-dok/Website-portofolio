@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Typography and Layout Test</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Test-specific styles to visualize the layout */
+    .test-section {
+      margin-bottom: 2rem;
+    }
+    .test-info {
+      background: #f0f0f0;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border: 2px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="test-section">
+      <h1>Typography Test - H1 Heading</h1>
+      <p>Font size: clamp(2.5rem, 5vw, 4rem) | Weight: 900 | Line height: 1.2</p>
+    </div>
+
+    <div class="test-section">
+      <h2>Typography Test - H2 Heading</h2>
+      <p>Font size: clamp(2rem, 4vw, 3rem) | Weight: 900 | Line height: 1.2</p>
+    </div>
+
+    <div class="test-section">
+      <h3>Typography Test - H3 Heading</h3>
+      <p>Font size: clamp(1.5rem, 3vw, 2rem) | Weight: 900 | Line height: 1.2</p>
+    </div>
+
+    <div class="test-section">
+      <p>This is body text. Font size: clamp(1rem, 2vw, 1.125rem) | Weight: 400 | Line height: 1.6</p>
+      <p>Body text should be comfortable to read with good line height and font size that scales responsively across different viewport sizes.</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <h2>Section Component Test</h2>
+      <p>This section has padding: 64px 0 (var(--spacing-lg)) and a bottom border of 4px solid black.</p>
+      <p>The container inside has max-width: 1200px and centers content with auto margins.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Card Component Test</h2>
+      <div class="card">
+        <h3>This is a Card</h3>
+        <p>The card has a 4px solid black border, 32px padding, and an 8px 8px brutal shadow.</p>
+        <p>It showcases the neobrutalism aesthetic with thick borders and pronounced shadows.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Container Max-Width Test</h2>
+      <div class="test-info">
+        <strong>Container specs:</strong>
+        <ul>
+          <li>Max-width: 1200px</li>
+          <li>Horizontal padding: 32px (var(--spacing-md))</li>
+          <li>Centered with margin: 0 auto</li>
+        </ul>
+        <p>Resize the browser window to see the container behavior. It will be centered and never exceed 1200px width.</p>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
